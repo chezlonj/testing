@@ -1,0 +1,192 @@
+<!doctype HTML>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+  <div class="container">
+  <header>
+    <div class="content-container">
+    <h1 class="title">Hey Jon!</h1>
+    <nav class="nav-controller">
+      <ul>
+        <li class="active departments">Departments</li>
+        <li class="seasonal">Seasons</li>
+      </ul>
+    </nav>
+    <nav class="nav-output">
+      <ul class="active" id="departments">
+        <li class="bakery-filter">
+          <span>🥖</span>
+          <p>Bakery</p>
+        </li>
+        <li class="grocery-filter">
+          <span>🍏</span>
+          <p>Grocery</p>
+        </li>
+        <li class="clothing-filter">
+          <span>👔</span>
+          <p>Clothing</p>
+        </li>
+        <li class="cafe-filter">
+          <span>☕</span>
+          <p>Cafe</p>
+        </li>
+        <li class="fuel-filter">
+          <span>⛽</span>
+          <p>Fuel</p>
+        </li>
+      </ul>
+      <ul id="seasons">
+        <li class="christmas-filter">
+          <span>🎄</span>
+          <p>Christmas</p>
+        </li>
+        <li class="jansale-filter">
+          <span>🏷</span>
+          <p>Jan Sale</p>
+        </li>
+        <li class="easter-filter">
+          <span>🐣</span>
+          <p>Easter</p>
+        </li>
+        <li class="halloween-filter">
+          <span>👻</span>
+          <p>Halloween</p>
+        </li>
+      </ul>
+    </nav>
+    <div class="tag-output">
+      <ul>
+        <li class="bakery-tag">Bakery</li>
+        <li class="christmas-tag">Christmas</li>
+      </ul>
+      </div>
+    </div>
+  </header>
+  <main class="content-container">
+    <h2 class="title">High priority</h2>
+      <ol id="high-priority-tasks">
+        <li class="red-alert task">
+          <span><img src="img/error-light.png"/></span>
+          <h3>Title</h3>
+          <time>All Week</time>
+          <p>Lorem ipsum dolor.</p>
+        </li>
+        <li class="task">
+          <span><img src="img/error-dark.png"/></span>
+          <h3>Title</h3>
+          <time>All Week</time>
+        </li>
+      </ol>
+    <h2 class="title">To do</h2>
+      <ol id="tasks">
+        <li class="bakery christmas task">
+          <span>🥖</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+        </li>
+        <li class="christmas task">
+          <span>🎄</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+        </li>
+        <li class="clothing task">
+          <span>👔</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+        </li>
+      </ol>
+    <h2 class="title">Need to know</h2>
+      <ul class="nk" id="relevant-nk">
+        <li class="clothing task">
+          <span>👔</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+          <p>Lorem ipsum dolor.</p>
+        </li>
+        <li class="christmas task">
+          <span>🎄</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+          <p>Lorem ipsum dolor.</p>
+        </li>
+        <li class="bakery task">
+          <span>🥖</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+          <p>Lorem ipsum dolor.</p>
+        </li>
+      </ul>
+      <ul class="nk" id="other-nk">
+        <li class="fuel task">
+          <span>⛽</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit alimignium priortis.</p>
+        </li>
+        <li class="clothing christmas task">
+          <span>👔</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit alimignium priortis.</p>
+        </li>
+        <li class="fuel christmas task">
+          <span>⛽</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit alimignium priortis.</p>
+        </li>
+        <li class="bakery christmas task">
+          <span>🥖</span>
+          <h3>Title</h3>
+          <time>All Week</time>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit alimignium priortis.</p>
+        </li>
+      </ul>
+  </main>
+  </div>
+  <script>
+
+  // Top level filter
+  $(".nav-controller li").click(function(){
+    $(".nav-controller li").removeClass("active");
+    $(this).addClass("active");
+    if ($(this).hasClass("seasonal")) {
+      $(".nav-output ul").removeClass("active");
+      $("#seasons").addClass("active");
+    } else {
+      $(".nav-output ul").removeClass("active");
+      $("#departments").addClass("active");
+    }
+  });
+
+  // Filter selection
+  $(".nav-output li").click(function(){
+    $(this).toggleClass("active");
+    if ($(this).hasClass("bakery-filter")) {
+      $("main").addClass("search-active");
+      $(".christmas .clothing .fuel").removeClass("active");
+      $(".bakery").toggleClass("active");
+      $(".bakery-tag").toggleClass("active");
+    } else if ($(this).hasClass("christmas-filter")) {
+      $("main").addClass("search-active");
+      $(".clothing .fuel").removeClass("active");
+      $(".christmas-tag").toggleClass("active");
+      $(".christmas").addClass("active");
+      $(".bakery").addClass("active");
+    }
+  });
+  var docWidth = document.documentElement.offsetWidth;
+
+  [].forEach.call(
+    document.querySelectorAll('*'),
+    function(el) {
+      if (el.offsetWidth = docWidth) {
+        console.log(el);
+      }
+    }
+  );
+  </script>
+</body>
